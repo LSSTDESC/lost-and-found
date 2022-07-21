@@ -4,3 +4,4 @@ astropy
 ipykernel
 jupyter
 ipython
+scipy
