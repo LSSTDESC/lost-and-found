@@ -19,6 +19,7 @@ class MatchInfo:
                 corresponding true object.
             weights: List of lists, same shape as matches, where each entry
                 is the weight of the match. If `None`, all weights are set to 1.
+                (e.g inverse distance)
             true_inds: List of true indices.
             pred_inds: List of predicted indices.
             ancil: ID numbers, etc.
@@ -98,7 +99,13 @@ class MatchInfo:
         raise NotImplementedError()
 
     def get_precision(self) -> float:
-        """Return precision defined as tp/(tp+fp)"""
+        """Return precision defined as tp/(tp+fp)
+
+        NOTE: Could define as tp / (sum of weights of all matches). That way if naive alg. matches 1 pred with everything , precision will be low.
+
+        NOTE: intuitively , precision should be high if only a few matches and
+        weights are relatively high for those few matches.
+        """
         tp = self.get_tp()
         fp = self.get_fp()
         return tp / (fp + tp)
