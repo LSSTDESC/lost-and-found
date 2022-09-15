@@ -26,23 +26,23 @@ class MatchInfo:
         TODO: consider ingesting distance and also using it as a weight.
         TODO: Consider using the number of matches to a given object as a weight.
 
-        Pathological cases: 
-            - Naive matching algorithm with radius = inf, saturates precion and recall 
-            - Detection algorithm that outputs many spurious predictions 
+        Pathological cases:
+            - Naive matching algorithm with radius = inf, saturates precion and recall
+            - Detection algorithm that outputs many spurious predictions
 
-        Framing: 
-        true_positives = set([x for match in self.matches for x in match])
-        false_positives = self.found
-        false_negatives = self.lost
-        # tp + fn = total truth
-        # tp + fp = total predicted
-        # Notion of negative only if we did this pixel-wise
-        # precision and recall will be saturated by a naive algorithm if we allow multiple matches per object
+        Framing:
+            true_positives = set([x for match in self.matches for x in match])
+            false_positives = self.found
+            false_negatives = self.lost
+            # tp + fn = total truth
+            # tp + fp = total predicted
+            # Notion of negative only if we did this pixel-wise
+            # precision and recall will be saturated by a naive algorithm if we allow multiple matches per object
 
-        # another framing
-        # tp = set(true_inds) - set(self.lost)
-        # precision = tp / (# total number of predictions)
-        # recall = tp / t
+            # another framing
+            # tp = set(true_inds) - set(self.lost)
+            # precision = tp / (# total number of predictions)
+            # recall = tp / t
         """
         # TODO: Generalize this later
         assert len(matches) == len(true_inds)
