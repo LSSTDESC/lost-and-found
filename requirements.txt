@@ -1,8 +1,0 @@
-FoFCatalogMatching
-numpy 
-astropy
-ipykernel
-jupyter
-ipython
-scipy
-black
